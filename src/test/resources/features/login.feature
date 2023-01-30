@@ -9,3 +9,5 @@ Feature: Login Functionality of Digital Bank
     And click the sign in button
     And verify the user is on homepage
     Then verify the welcome message is displayed on homepage
+
+
