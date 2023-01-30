@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Java-Links-Bank-Project-" />
         <module name="DigitalBank_JavaLinks" />
       </profile>
     </annotationProcessing>
