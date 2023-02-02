@@ -3,7 +3,7 @@ package com.automation.test.step_definition;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-public class DepositSteps {
+public class DepositSteps extends BaseSteps {
 
     @Given("Deposit Button is Visible on SideBar Under Transactions\\/Transfers Subsection")
     public void deposit_button_is_visible_on_side_bar_under_transactions_transfers_subsection() {

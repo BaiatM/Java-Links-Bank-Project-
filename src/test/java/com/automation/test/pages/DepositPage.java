@@ -1,4 +1,4 @@
 package com.automation.test.pages;
 
-public class DepositPage {
+public class DepositPage extends BasePage {
 }
