@@ -11,16 +11,13 @@ public class LoginSteps {
        
     }
 
-    @Given("enter a valid username <test1@gmail.com>")
-    public void enter_a_valid_username_test1_gmail_com() {
-        
-       
-    }
+    @Given("enter a valid username {string}")
+    public void enter_a_valid_username(String string) {
 
-    @When("enter a valid password <TestPass1234>")
-    public void enter_a_valid_password_test_pass1234() {
-        
-       
+    }
+    @When("enter a valid password {string}")
+    public void enter_a_valid_password(String string) {
+
     }
 
     @When("click the sign in button")
