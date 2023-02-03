@@ -7,4 +7,5 @@ public class DepositPage extends BasePage {
     //add a comment on line 7
     //or 8
     //Max's second commit or third IDK
+    // comment on line 10 from Andrei C.
 }
