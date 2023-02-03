@@ -9,8 +9,5 @@
         <module name="DigitalBank_JavaLinks" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Java-Links-Bank-Project-" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
