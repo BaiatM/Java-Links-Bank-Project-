@@ -9,6 +9,7 @@ public class DriverUtils {
 
     private static WebDriver driver;
 
+
     public void createDriver(String url){
         System.setProperty("webdriver.chrome.driver", "src/test/java/com/automation/test/driver/chromedriver.exe");
         driver = new ChromeDriver();
@@ -27,5 +28,6 @@ public class DriverUtils {
     public void quitDriver(){
         driver.close();
         driver.quit();
+        System.out.println("in quitDriver() method");
     }
 }
