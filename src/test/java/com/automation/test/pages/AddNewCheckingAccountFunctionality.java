@@ -7,5 +7,5 @@ public class AddNewCheckingAccountFunctionality {
     //
     //then wait till its merged with main, now go back to main and pull the new changes
 
-    //new changes on comments
+    //new changes on comments // This is Sergeys comments for testing purpose.
 }
