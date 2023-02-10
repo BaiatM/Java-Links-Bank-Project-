@@ -7,7 +7,7 @@ import utils.DriverUtils;
 public class Hooks {
     @Before
     public void setUp(){
-        DriverUtils.createDriver("http://18.116.88.132:8080/bank/login");
+        DriverUtils.createDriver();
     }
     @After
     public void cleanUp() throws InterruptedException {
