@@ -8,4 +8,4 @@ Feature: View All Savings Accounts
   Scenario: Verify user can view all savings accounts
     Given user clicks Savings on left sidebar
     And user clicks View Savings option
-   Then user sees all Savings accounts that exist 
+   Then user sees all Savings accounts that exist

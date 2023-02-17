@@ -1,20 +1,25 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import utils.DriverUtils;
 
 //16b. create verification of HomePage
 public class HomePage extends BasePage {
+    WebDriver driver = DriverUtils.getDriver();
+
     @FindBy(xpath = "//li[@class=\"active\"]")
     WebElement welcomeName;
-    // PROFILE AVATAR ELEMENTS******************************
+//    // PROFILE AVATAR ELEMENTS******************************
     @FindBy(xpath = "//img[@alt='User Avatar']")
     WebElement profileDropDown;
     @FindBy(xpath = "//*[text()='My Profile']")
-   public  WebElement profile;
+    public  WebElement profile;
     @FindBy(xpath = "//*[text()='Change Password']")
-   public  WebElement changePassword;
+    public  WebElement changePassword;
     @FindBy(xpath = "//*[text()='Logout']")
     public WebElement logOut;
     // LEFT SIDEBAR ELEMENTS******************************
@@ -26,10 +31,10 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[2]/a/i")
     WebElement checking;
     // SAVINGS ELEMENTS******************************
-    @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[3]/a/i")
-    WebElement savings;
     @FindBy(xpath = "//a[contains(text(), \"View Savings\")]")
     WebElement viewSavings;
+    @FindBy(xpath = "//a[@id=\"savings-menu\"]")
+    WebElement savings;
     @FindBy(xpath = "//a[contains(text(), \"New Savings\")]")
     WebElement newSavings;
     // EXTERNAL ELEMENTS******************************
@@ -52,13 +57,13 @@ public class HomePage extends BasePage {
     }
 
     //SAVINGS ACCOUNTS METHODS
-    public void clickSavings() {
+    public void openSavingsOptions() {
         savings.click();
     }
-    public void clickViewSavingsAccounts(){
+    public void viewSavingsAccounts(){
         viewSavings.click();
     }
-    public void clickNewSavingsAccount(){
+    public void createNewSavingsAccount(){
         newSavings.click();
     }
 
