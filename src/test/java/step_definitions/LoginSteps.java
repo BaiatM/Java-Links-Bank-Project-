@@ -14,6 +14,8 @@ public class LoginSteps {
     LoginPage loginPage = new LoginPage();
     HomePage homePage = new HomePage();
 
+
+
     //10b. paste our steps and import annotations
     @Given("user enters valid username and password")
     public void user_enters_valid_username_and_password() throws InterruptedException {
@@ -28,6 +30,15 @@ public class LoginSteps {
     public void verify_user_is_successfully_logged_in_to_their_account() throws InterruptedException {
         homePage.verifyHomePage();
         Thread.sleep(1500);
+    }
+    @Given("user enters valid {string} and {string}")
+    public void user_enters_valid_username_and_password(String str, String str1) {
+        loginPage.enterValidLoginInfo(str,str1);
+    }
+
+    @Then("verify user is successfully logged in to the account")
+    public void verify_user_is_successfully_logged_in_to_the_account() {
+        homePage.verifyPage();
     }
 
 
