@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.ConfigReader;
 
 public class LoginPage extends BasePage{
     //14b. all methods and elements of the Login page will be created here
@@ -25,6 +26,11 @@ public class LoginPage extends BasePage{
 
     @FindBy(xpath = "//div[@class=\"register-link m-t-15 text-center\"]//a")
     WebElement signUpHereLink;
+    @FindBy(id = "username")
+    WebElement usernameBar;
+    @FindBy(id = "password")
+    WebElement passwordBar;
+
 
     //15. create new method
     public void enterValidUserNamePassword(){
@@ -43,5 +49,13 @@ public class LoginPage extends BasePage{
     //16a. the next step is to verify that we are on the HomePage, and this requires creating a new class
     //called HomePage
 
+    public void enterValidLoginInfo(String str1,String str2){
+        usernameBar.sendKeys(ConfigReader.getProperty(str1));
+        passwordBar.sendKeys(ConfigReader.getProperty(str2));
+
+    }
+    public void clickSignInBtn(){
+        signInBtn.click();
+    }
 
 }
