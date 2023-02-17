@@ -7,7 +7,7 @@ Feature: Verify accounts buttons
     Then user can see "<buttons>"
     Examples:
       | buttons         |
-      | My Profile         |
+      | My Profile      |
       | Change Password |
       | Logout          |
 
