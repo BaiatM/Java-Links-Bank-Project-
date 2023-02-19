@@ -18,7 +18,8 @@ Feature: Creating a new savings account
     When user clicks View Savings option under Savings option
     Then verify new savings account exists
   @Smoke
-  Scenario: User is able to to reset new savings account information by clicking reset button    When user clicks on Savings option in left sidebar
+  Scenario: User is able to to reset new savings account information by clicking reset button
+    When user clicks on Savings option in left sidebar
     And user clicks on New Savings option under Savings option
     And verify user is in Create Savings view
     And user is able to see all savings related labels

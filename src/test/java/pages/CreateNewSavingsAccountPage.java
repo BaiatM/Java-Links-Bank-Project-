@@ -63,7 +63,7 @@ public class CreateNewSavingsAccountPage extends BasePage {
         Assert.assertTrue(accountOwnership.isDisplayed());
         Assert.assertTrue(accountNameTitle.isDisplayed());
         Assert.assertTrue(initialDepositTitle.isDisplayed());
-        Assert.assertTrue(openingBalance.isDisplayed());
+        Assert.assertTrue(openingBalanceInput.isDisplayed());
         Assert.assertTrue(submitBtn.isDisplayed());
         Assert.assertTrue(resetBtn.isDisplayed());
     }
