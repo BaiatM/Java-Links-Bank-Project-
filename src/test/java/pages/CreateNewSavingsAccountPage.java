@@ -36,7 +36,7 @@ public class CreateNewSavingsAccountPage extends BasePage {
     @FindBy(xpath = "//strong[contains(text(), \"Initial Deposit\")]")
     WebElement initialDepositTitle;
     @FindBy(xpath = "//input[@id=\"openingBalance\"]")
-    WebElement openingBalance;
+    WebElement openingBalanceInput;
     @FindBy(xpath = "//button[@id=\"newSavingsSubmit\"]")
     WebElement submitBtn;
     @FindBy(xpath = "//button[@id=\"newSavingsReset\"]")
@@ -86,13 +86,17 @@ public class CreateNewSavingsAccountPage extends BasePage {
 //        return name;
     }
     public void openBalance(){
-        openingBalance.sendKeys(ConfigReader.getProperty("savings.deposit"));
+        openingBalanceInput.sendKeys(ConfigReader.getProperty("savings.deposit"));
     }
     public void submitNewSavingsInformation() {
         submitBtn.click();
     }
     public void resetNewSavingsInformation() {
         resetBtn.click();
+    }
+    public void verifyNewSavingsInformationErased() {
+        Assert.assertTrue(accountNameInput.getText().isEmpty());
+        Assert.assertTrue(openingBalanceInput.getText().isEmpty());
     }
 
 }
