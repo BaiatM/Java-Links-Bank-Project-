@@ -1,6 +1,5 @@
 Feature: View All Savings Accounts
 
-
   Background: User logs in to Digital Bank
     Given user enters valid username and password
     When user clicks on Sign In button

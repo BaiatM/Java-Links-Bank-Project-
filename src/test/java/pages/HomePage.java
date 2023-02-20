@@ -1,27 +1,30 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.github.javafaker.Faker;
+import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import utils.ConfigReader;
 import utils.DriverUtils;
 
 //16b. create verification of HomePage
 public class HomePage extends BasePage {
     WebDriver driver = DriverUtils.getDriver();
+    Faker faker = new Faker();
 
     @FindBy(xpath = "//li[@class=\"active\"]")
     WebElement welcomeName;
-//    // PROFILE AVATAR ELEMENTS******************************
+    //  PROFILE AVATAR ELEMENTS******************************
     @FindBy(xpath = "//img[@alt='User Avatar']")
     WebElement profileDropDown;
     @FindBy(xpath = "//*[text()='My Profile']")
-    public  WebElement profile;
+    public WebElement profile;
     @FindBy(xpath = "//*[text()='Change Password']")
-    public  WebElement changePassword;
+    public WebElement changePassword;
     @FindBy(xpath = "//*[text()='Logout']")
     public WebElement logOut;
     // LEFT SIDEBAR ELEMENTS******************************
@@ -50,62 +53,75 @@ public class HomePage extends BasePage {
     WebElement transfer;
     @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[8]/a/i")
     WebElement visaDirectTransfer;
-    @FindBy (xpath = "//li[@class='active']")
+    @FindBy(xpath = "//li[@class='active']")
     WebElement welcomeText;
-    @FindBy (xpath = "//*[text()='Checking']")
+    @FindBy(xpath = "//*[text()='Checking']")
     WebElement checkingDropDown;
-    @FindBy (xpath = "//*[text()='View Checking']")
+    @FindBy(xpath = "//*[text()='View Checking']")
     WebElement viewCheckingOption;
-    @FindBy (xpath = "//*[text()='New Checking']")
+    @FindBy(xpath = "//*[text()='New Checking']")
     WebElement newCheckingOption;
-    @FindBy (id = "savings-menu")
+    @FindBy(id = "savings-menu")
     WebElement savingsDropDown;
-    @FindBy (id = "new-savings-menu-item")
+    @FindBy(id = "new-savings-menu-item")
     WebElement newSavingsOption;
-    @FindBy (id = "view-savings-menu-item")
+    @FindBy(id = "view-savings-menu-item")
     WebElement viewSavingsOption;
-    @FindBy (xpath ="//*[text()='Deposit']")
+    @FindBy(xpath = "//*[text()='Deposit']")
     WebElement depositBtn;
+    // NAVIAGATION BAR ELEMENTS******************************
+    @FindBy(css = "button#searchLocations")
+    WebElement searchIcon;
+    @FindBy(css = "input#zipcode")
+    WebElement zipCode;
+    @FindBy(xpath = "//button[@class=\"search-close\"]")
+    WebElement xCloseButton;
+    @FindBy(css = "button#notification")
+    WebElement notificationBellIcon;
+    @FindBy(css = "button#message")
+    WebElement emailIcon;
 
     Actions actions = new Actions(DriverUtils.getDriver());
 
     public void verifyHomePage() {
         Assert.assertTrue(welcomeName.isDisplayed(), "You are not on the homepage; missing \"Welcome\" message");
     }
-    public void clickOnAccountBtn(){
+
+    public void clickOnAccountBtn() {
         profileDropDown.click();
     }
-    public void verifyPage(){
-        Assert.assertTrue(welcomeText.isDisplayed(),"Welcome test message is not visible, could be on wrong page");
+
+    public void verifyPage() {
+        Assert.assertTrue(welcomeText.isDisplayed(), "Welcome test message is not visible, could be on wrong page");
     }
 
-    public void clickOnCheckingDropDown(){
+    public void clickOnCheckingDropDown() {
         checkingDropDown.click();
     }
 
-    public void verifyCheckingOptions(){
+    public void verifyCheckingOptions() {
         Assert.assertTrue(viewCheckingOption.isDisplayed());
         Assert.assertTrue(newCheckingOption.isDisplayed());
     }
 
-    public void openNewCheckingInNewTab(){
+    public void openNewCheckingInNewTab() {
         actions.keyDown(Keys.COMMAND).click(newCheckingOption).keyUp(Keys.COMMAND).build().perform();
     }
 
-    public void userClicksOnSavingsDropDown(){
+    public void userClicksOnSavingsDropDown() {
         Assert.assertTrue(savingsDropDown.isDisplayed());
         savingsDropDown.click();
     }
 
-    public void clickOnNewSavingsOption(){
+    public void clickOnNewSavingsOption() {
         newSavingsOption.click();
     }
 
-    public void userClicksOnViewSavingsOption(){
+    public void userClicksOnViewSavingsOption() {
         viewSavingsOption.click();
     }
 
-    public void userClicksOnDepositBtn(){
+    public void userClicksOnDepositBtn() {
         depositBtn.click();
 
     }
@@ -114,11 +130,36 @@ public class HomePage extends BasePage {
     public void openSavingsOptions() {
         savings.click();
     }
-    public void viewSavingsAccounts(){
+
+    public void viewSavingsAccounts() {
         viewSavings.click();
     }
-    public void createNewSavingsAccount(){
+
+    public void createNewSavingsAccount() {
         newSavings.click();
+    }
+
+    //NAVBAR METHODS###################
+
+    //*****SEARCH METHODS
+    public void searchATMs(){
+        searchIcon.click();
+    }
+    public void enterZip(){
+        String zip = faker.address().zipCode();
+        zipCode.sendKeys(zip);
+    }
+    public void enterInvalidZip(){
+        zipCode.sendKeys(ConfigReader.getProperty("invalid.shortZipcode"));
+    }
+    public void enterKey(){
+        actions.sendKeys(Keys.RETURN).perform();
+    }
+    public void invalidZipInputError(){
+        System.out.println("User gets error pop-up");
+    }
+    public void closeSearchBar() {
+        xCloseButton.click();
     }
 
 
