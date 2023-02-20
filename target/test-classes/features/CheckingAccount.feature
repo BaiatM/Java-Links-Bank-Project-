@@ -23,6 +23,31 @@ Feature: Creating a new checking account
     Then user should see that information was cleared
 
 
+  Scenario Outline: Transactions table validation
+    Given user is clicking on Checking dropdown and seeing following options: View Checking, New Checking
+    And user clicks on View Checking option
+    And user is on view checking accounts page
+    And user finds "<accountName>" checking account and activates toggle button
+    When user scrolls down until the transaction table is visible
+    Then user should see all details about transactions
+    Examples:
+      | accountName |
+      | Test02      |
+#      | aa          |
+#      | Practice01  |
+#      | Practice02  |
+#      | Practice03  |
+#      | Practice04  |
+#      | Practice05  |
+#      | Practice06  |
+#      | Practice07  |
+#      | Practice08  |
+#      | Practice09  |
+#      | Practice10  |
+#      | Practice11  |
+#      | Practice12  |
+#      | Practice13  |
+#      | Practice14  |
 
 
 
