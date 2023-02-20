@@ -79,7 +79,7 @@ public class CreateNewCheckingAccountPage extends BasePage{
     }
 
     public void verifyConfirmation(){
-        Assert.assertTrue(confirmationMsg.isDisplayed(),"Creation of new Standard Checking account is failed");
+        Assert.assertTrue(confirmationMsg.isDisplayed(),"Creation of new Standard Checking account failed");
     }
 
     public void clickResetBtn(){

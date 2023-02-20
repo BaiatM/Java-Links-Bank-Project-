@@ -1,0 +1,3 @@
+step_definitions\CheckingAccountSteps.class
+pages\CreateNewCheckingAccountPage.class
+utils\ConfigReader.class
