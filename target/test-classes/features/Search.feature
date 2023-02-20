@@ -15,4 +15,4 @@ Feature: Search for ATM functionality
     Given user has clicked search icon in top navigation bar
     And user has entered a invalid zip code to search
     When user clicks Enter
-    Then user sees error pop-up
+    Then user should see error pop-up and close search

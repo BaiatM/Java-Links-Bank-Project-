@@ -8,7 +8,9 @@ public class SearchResultsPage extends BasePage{
     @FindBy(xpath = "//strong[@class=\"text-white card-title\"]")
     WebElement searchResults;
 
+
     public void verifySearchResult(){
         Assert.assertTrue(searchResults.isDisplayed());
     }
+
 }

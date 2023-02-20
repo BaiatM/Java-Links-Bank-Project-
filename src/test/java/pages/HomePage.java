@@ -74,6 +74,8 @@ public class HomePage extends BasePage {
     WebElement searchIcon;
     @FindBy(css = "input#zipcode")
     WebElement zipCode;
+    @FindBy(xpath = "//button[@class=\"search-close\"]")
+    WebElement xCloseButton;
     @FindBy(css = "button#notification")
     WebElement notificationBellIcon;
     @FindBy(css = "button#message")
@@ -155,6 +157,9 @@ public class HomePage extends BasePage {
     }
     public void invalidZipInputError(){
         System.out.println("User gets error pop-up");
+    }
+    public void closeSearchBar() {
+        xCloseButton.click();
     }
 
 

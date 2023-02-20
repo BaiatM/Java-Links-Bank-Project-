@@ -26,15 +26,16 @@ public class SearchSteps {
         homePage.enterKey();
     }
     @Then("user should see ATM Search Location Results page")
-    public void user_should_see_atm_search_location_results_page() {
+    public void user_should_see_atm_search_location_results_page() throws InterruptedException {
         searchResultsPage.verifySearchResult();
-    }
+        Thread.sleep(1000);}
     @And("user has entered a invalid zip code to search")
     public void user_has_entered_a_invalid_zip_code_to_search() {
         homePage.enterInvalidZip();
     }
-    @Then("user sees error pop-up")
-    public void user_sees_error_pop_up() {
+    @Then("user should see error pop-up and close search")
+    public void user_should_see_error_pop_up_and_close_search() {
+        // Write code here that turns the phrase above into concrete actions
         homePage.invalidZipInputError();
     }
 }
