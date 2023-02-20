@@ -1,5 +1,6 @@
 Feature: Verify accounts buttons
 
+  @Smoke
   Scenario Outline: Verify user is able to login with valid credentials
     Given user enters valid username and password
     When user clicks on Sign In button

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CreateNewCheckingAccountPage extends BasePage{
 
-    @FindBy (xpath = "//*[text()='New Checking Account']")
+    @FindBy (css = "div.page-title #page-title")
     WebElement newCheckingAccountTitle;
     @FindBy (xpath = "//*[text()='Select Checking Account Type']")
     WebElement selectCheckingType;
