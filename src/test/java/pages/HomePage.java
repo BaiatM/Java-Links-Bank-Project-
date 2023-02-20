@@ -7,14 +7,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.ConfigReader;
 import utils.DriverUtils;
+
+import java.util.List;
 
 //16b. create verification of HomePage
 public class HomePage extends BasePage {
     WebDriver driver = DriverUtils.getDriver();
     Faker faker = new Faker();
+    WebDriverWait drWait = new WebDriverWait(DriverUtils.getDriver(), 10);
 
     @FindBy(xpath = "//li[@class=\"active\"]")
     WebElement welcomeName;
@@ -70,14 +75,29 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[text()='Deposit']")
     WebElement depositBtn;
     // NAVIAGATION BAR ELEMENTS******************************
+    //SEARCH ELEMENTS
     @FindBy(css = "button#searchLocations")
     WebElement searchIcon;
     @FindBy(css = "input#zipcode")
     WebElement zipCode;
     @FindBy(xpath = "//button[@class=\"search-close\"]")
     WebElement xCloseButton;
+    //NOTIFICATION ELEMENTS
     @FindBy(css = "button#notification")
     WebElement notificationBellIcon;
+    @FindBy(xpath = "//button[@id=\"notification\"]/span[@class=\"count bg-danger\"]")
+    WebElement notificationBadgeNumber;
+    int notifications = 0;
+    int updatedNotifications = 0;
+    @FindBy(xpath = "//div[@class=\"dropdown-menu show\"]")
+    WebElement notificationDropDown;
+    //list of notifications to create Array
+    @FindBy(xpath = "//div[@class=\"dropdown-menu show\"]/a[@class=\"dropdown-item media\"]/p")
+    List<WebElement> notificationItemsList;
+    //first notification
+    @FindBy(xpath = "//div[@class=\"dropdown-menu show\"]/a[@class=\"dropdown-item media\"]/p")
+    WebElement firstNotificationItem;
+    //MESSAGE ELEMENTS
     @FindBy(css = "button#message")
     WebElement emailIcon;
 
@@ -160,6 +180,32 @@ public class HomePage extends BasePage {
     }
     public void closeSearchBar() {
         xCloseButton.click();
+    }
+    //*****NOTIFICATION METHODS
+    public int notificationsExist() {
+        Assert.assertTrue(notificationBadgeNumber.isDisplayed());
+        System.out.println(notificationBadgeNumber.getText());
+        notifications = Integer.parseInt(notificationBadgeNumber.getText());
+        return notifications;
+    }
+    public void clickNotificationBellIcon() {
+        notificationBellIcon.click();
+    }
+    public void notificationDropDownPopulated() {
+        Assert.assertTrue(notificationDropDown.isDisplayed());
+    }
+    public void clickFirstNotification() {
+        firstNotificationItem.click();
+    }
+    public void notificationsBadgeNumberDecreaseAfterClickOnItem(){
+        notifications = notificationsExist();
+        notifications = notifications - 1;
+        updatedNotifications = Integer.parseInt(notificationBadgeNumber.getText());
+        System.out.println("Updated Notifications: " + updatedNotifications);
+        System.out.println("Notifications: " + notifications);
+        Assert.assertTrue(notifications == updatedNotifications, "Notification number and updated notification number do no match");
+
+
     }
 
 
