@@ -57,6 +57,10 @@ public class SavingsAccountSteps {
     public void user_clicks_submit_button() {
         createNewSavingsAccountPage.submitNewSavingsInformation();
     }
+    @And("user clicks Reset button")
+    public void user_clicks_reset_button() {
+        createNewSavingsAccountPage.resetNewSavingsInformation();
+    }
     @When("verify user sees View Savings view and the newly created Savings account with On Off button set to On")
     public void verify_user_sees_view_savings_view_and_the_newly_created_savings_account_with_on_off_button_set_to_on() {
         viewSavingsAccountsPage.verifyNewSavingsAccountCreated();
@@ -70,5 +74,9 @@ public class SavingsAccountSteps {
     @Then("verify new savings account exists")
     public void verify_new_savings_account_exists() {
         viewSavingsAccountsPage.newSavingsAccountCreated();
+    }
+    @Then("verify create new savings account page is reset")
+    public void verify_create_new_savings_account_page_is_reset() {
+        createNewSavingsAccountPage.verifyNewSavingsInformationErased();
     }
 }
