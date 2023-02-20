@@ -1,14 +1,17 @@
 package step_definitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.CreateNewCheckingAccountPage;
 import pages.HomePage;
+import pages.ViewCheckingAccountsPage;
 
 public class CheckingAccountSteps {
     HomePage homePage = new HomePage();
     CreateNewCheckingAccountPage newTab = new CreateNewCheckingAccountPage();
+    ViewCheckingAccountsPage viewCheckingAccountsPage = new ViewCheckingAccountsPage();
     @Given("user is clicking on Checking dropdown and seeing following options: View Checking, New Checking")
     public void user_is_clicking_on_checking_dropdown_and_seeing_following_options_view_checking_new_checking() {
         homePage.clickOnCheckingDropDown();
@@ -50,5 +53,26 @@ public class CheckingAccountSteps {
     @Then("user should see that information was cleared")
     public void user_should_see_that_information_was_cleared() {
         newTab.verifyEverythingIsBlank();
+    }
+
+    @And("user clicks on View Checking option")
+    public void userClicksOnViewCheckingOption() {
+        viewCheckingAccountsPage.userClicksOnViewCheckingOption();
+    }
+    @Given("user is on view checking accounts page")
+    public void userIsOnViewCheckingAccountsPage() {
+        viewCheckingAccountsPage.verifyViewCheckingAccountsPageTitle();
+    }
+    @And("user finds {string} checking account and activates toggle button")
+    public void userFindsCheckingAccountAndActivatesToggleButton(String accountName) {
+        viewCheckingAccountsPage.userFindsAccountAndActivatesToggleBtn(accountName);
+    }
+    @When("user scrolls down until the transaction table is visible")
+    public void userScrollsDownUntilTheTransactionTableIsVisible() {
+        viewCheckingAccountsPage.userScrollsDownToTransactionsTable();
+    }
+    @And("user should see all details about transactions")
+    public void userShouldSeeAllDetailsAboutTransactions() {
+        viewCheckingAccountsPage.userCanSeeTransactionDetails();
     }
 }
