@@ -1,13 +1,11 @@
 package pages;
 
 import com.github.javafaker.Faker;
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.ConfigReader;
@@ -101,6 +99,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "button#message")
     WebElement emailIcon;
 
+
     Actions actions = new Actions(DriverUtils.getDriver());
 
     public void verifyHomePage() {
@@ -162,25 +161,31 @@ public class HomePage extends BasePage {
     //NAVBAR METHODS###################
 
     //*****SEARCH METHODS
-    public void searchATMs(){
+    public void searchATMs() {
         searchIcon.click();
     }
-    public void enterZip(){
+
+    public void enterZip() {
         String zip = faker.address().zipCode();
         zipCode.sendKeys(zip);
     }
-    public void enterInvalidZip(){
+
+    public void enterInvalidZip() {
         zipCode.sendKeys(ConfigReader.getProperty("invalid.shortZipcode"));
     }
-    public void enterKey(){
+
+    public void enterKey() {
         actions.sendKeys(Keys.RETURN).perform();
     }
-    public void invalidZipInputError(){
+
+    public void invalidZipInputError() {
         System.out.println("User gets error pop-up");
     }
+
     public void closeSearchBar() {
         xCloseButton.click();
     }
+
     //*****NOTIFICATION METHODS
     public int notificationsExist() {
         Assert.assertTrue(notificationBadgeNumber.isDisplayed());
@@ -188,16 +193,20 @@ public class HomePage extends BasePage {
         notifications = Integer.parseInt(notificationBadgeNumber.getText());
         return notifications;
     }
+
     public void clickNotificationBellIcon() {
         notificationBellIcon.click();
     }
+
     public void notificationDropDownPopulated() {
         Assert.assertTrue(notificationDropDown.isDisplayed());
     }
+
     public void clickFirstNotification() {
         firstNotificationItem.click();
     }
-    public void notificationsBadgeNumberDecreaseAfterClickOnItem(){
+
+    public void notificationsBadgeNumberDecreaseAfterClickOnItem() {
         notifications = notificationsExist();
         notifications = notifications - 1;
         updatedNotifications = Integer.parseInt(notificationBadgeNumber.getText());
