@@ -50,8 +50,8 @@ public class HomePage extends BasePage {
     WebElement external;
     @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[5]/a/i")
     WebElement deposit;
-    @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[6]/a/i")
-    WebElement withdraw;
+    @FindBy (id="withdraw-menu-item")
+    WebElement withdrawOption;
     @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[7]/a/i")
     WebElement transfer;
     @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[8]/a/i")
@@ -98,9 +98,8 @@ public class HomePage extends BasePage {
     //MESSAGE ELEMENTS
     @FindBy(css = "button#message")
     WebElement emailIcon;
-    @FindBy (id="withdraw-menu-item")
-    WebElement withdrawOption;
-
+    @FindBy(xpath = "//div[@class=\"dropdown-menu show\"]/p")
+    WebElement onScreenEmailMessage;
 
     Actions actions = new Actions(DriverUtils.getDriver());
 
@@ -215,9 +214,9 @@ public class HomePage extends BasePage {
         System.out.println("Updated Notifications: " + updatedNotifications);
         System.out.println("Notifications: " + notifications);
         Assert.assertTrue(notifications == updatedNotifications, "Notification number and updated notification number do no match");
-
-
     }
+    //*****EMAIL METHODS
+
 
     public void userClicksOnWithdrawOption(){
         withdrawOption.click();
