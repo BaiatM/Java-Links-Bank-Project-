@@ -1,8 +1,10 @@
 Feature: Creating a new checking account
+
   Background: User is logged in
     Given user enters valid "valid.username" and "valid.password"
     When user clicks on Sign In button
     Then verify user is successfully logged in to the account
+
   @Smoke
   Scenario: User is able to create a new checking account with valid credentials
     Given user is clicking on Checking dropdown and seeing following options: View Checking, New Checking
@@ -12,6 +14,7 @@ Feature: Creating a new checking account
     When user fills the information for new checking account
     And user clicks on submit button
     Then user should see the confirmation message
+
   @Smoke
   Scenario: User is able to to reset filled information by clicking reset button
     Given user is clicking on Checking dropdown and seeing following options: View Checking, New Checking
@@ -33,21 +36,11 @@ Feature: Creating a new checking account
     Examples:
       | accountName |
       | Test02      |
-#      | aa          |
-#      | Practice01  |
-#      | Practice02  |
-#      | Practice03  |
-#      | Practice04  |
-#      | Practice05  |
-#      | Practice06  |
-#      | Practice07  |
-#      | Practice08  |
-#      | Practice09  |
-#      | Practice10  |
-#      | Practice11  |
-#      | Practice12  |
-#      | Practice13  |
-#      | Practice14  |
+      | aa          |
+      | Practice06  |
+      | Practice07  |
+      | Practice09  |
+      | Test00      |
 
 
 

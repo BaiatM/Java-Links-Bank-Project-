@@ -98,6 +98,10 @@ public class HomePage extends BasePage {
     //MESSAGE ELEMENTS
     @FindBy(css = "button#message")
     WebElement emailIcon;
+    @FindBy(xpath = "//div[@aria-labelledby=\"message\"]/p")
+    WebElement emailMessage;
+    @FindBy(xpath = "//button[@id=\"message\"]//span")
+    WebElement emailBadgeNumber;
 
 
     Actions actions = new Actions(DriverUtils.getDriver());
