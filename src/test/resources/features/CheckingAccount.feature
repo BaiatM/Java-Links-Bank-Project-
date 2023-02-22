@@ -25,7 +25,7 @@ Feature: Creating a new checking account
     And user clicks on reset button
     Then user should see that information was cleared
 
-
+  @Smoke
   Scenario Outline: Transactions table validation
     Given user is clicking on Checking dropdown and seeing following options: View Checking, New Checking
     And user clicks on View Checking option
