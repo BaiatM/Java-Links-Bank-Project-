@@ -98,6 +98,8 @@ public class HomePage extends BasePage {
     //MESSAGE ELEMENTS
     @FindBy(css = "button#message")
     WebElement emailIcon;
+    @FindBy (id="withdraw-menu-item")
+    WebElement withdrawOption;
 
 
     Actions actions = new Actions(DriverUtils.getDriver());
@@ -215,6 +217,10 @@ public class HomePage extends BasePage {
         Assert.assertTrue(notifications == updatedNotifications, "Notification number and updated notification number do no match");
 
 
+    }
+
+    public void userClicksOnWithdrawOption(){
+        withdrawOption.click();
     }
 
 
