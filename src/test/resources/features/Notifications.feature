@@ -4,7 +4,7 @@ Feature: click bell Notifications icon in navigation bar and manage notification
     Given user enters valid username and password
     When user clicks on Sign In button
     Then verify user is successfully logged in to their account
-
+@Smoke
     Scenario:
       Given bell icon has shown a badge number indicating that number of notifications exist
       And user clicks bell icon
