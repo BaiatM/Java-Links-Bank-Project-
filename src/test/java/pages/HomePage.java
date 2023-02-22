@@ -98,6 +98,10 @@ public class HomePage extends BasePage {
     //MESSAGE ELEMENTS
     @FindBy(css = "button#message")
     WebElement emailIcon;
+    @FindBy(css = "button#message .count")
+    WebElement emailIconBadge;
+    int emailBadgeNumber = 0;
+    String onScreenMessage = "";
     @FindBy(xpath = "//div[@class=\"dropdown-menu show\"]/p")
     WebElement onScreenEmailMessage;
 
@@ -216,7 +220,19 @@ public class HomePage extends BasePage {
         Assert.assertTrue(notifications == updatedNotifications, "Notification number and updated notification number do no match");
     }
     //*****EMAIL METHODS
-
+        public void clickMessageIcon() {
+        emailIcon.click();
+        }
+        public void messageIconDisplaysBadgeNumber() {
+            Assert.assertTrue(emailIconBadge.isDisplayed());
+        }
+        public void compareMessageBadgeNumberWithOnScreenNumber() {
+            emailBadgeNumber = Integer.parseInt(emailIconBadge.getText());
+            String badgeNo = Integer.toString(emailBadgeNumber);
+            String confirmEmailOnscreen = "You have " + badgeNo + " Unread Mail[s]";
+            onScreenMessage = onScreenEmailMessage.getText();
+            Assert.assertTrue(onScreenMessage.equalsIgnoreCase(confirmEmailOnscreen), "Message Icon Badge number displayed does not match the On-Screen Message's number of Unread Messages.");
+        }
 
     public void userClicksOnWithdrawOption(){
         withdrawOption.click();
