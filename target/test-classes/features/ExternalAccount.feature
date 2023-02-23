@@ -38,3 +38,13 @@ Feature: Linking an external account
     And user clicks on reset button on Link External Account page
     Then user verifies empty username and password fields
 
+    Scenario: User clicks View External Accounts and sees Alert pop-up saying that there are no such accounts
+      Given user has clicked on External option in left sidebar
+      And has selected View External Accounts
+      And has confirmed View External Accounts page
+      When user sees pop-up alert there are no External Accounts
+      And clicks OK on pop-up
+      Then user should be taken to Link External Account page
+
+
+

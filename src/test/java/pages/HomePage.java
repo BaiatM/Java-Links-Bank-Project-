@@ -175,6 +175,9 @@ public class HomePage extends BasePage {
     public void clickLinkExternal(){
         linkExternal.click();
     }
+    public void clickViewExternal(){
+        viewExternal.click();
+    }
 
     //NAVBAR METHODS###################
 

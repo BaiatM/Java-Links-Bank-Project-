@@ -1,18 +1,26 @@
 package pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.ConfigReader;
 import utils.DriverUtils;
 
-public class LinkExternalAccountPage extends BasePage{
+import java.time.Duration;
+
+public class LinkExternalAccountPage extends BasePage {
     WebDriver driver = DriverUtils.getDriver();
+    WebDriverWait drWait = new WebDriverWait(driver, 10);
 
     @FindBy(css = "h1#page-title")
     WebElement externalAccountTitle;
+    @FindBy(xpath = "//div[@class=\"page-title\"]/h1[@id=\"page-title\"]")
+    WebElement viewExternalAccountsTitle;
     @FindBy(xpath = "//span[contains(text(), \"no banking providers available\")]")
     WebElement errorMessage;
     @FindBy(xpath = "//div[@class=\"row\"]/div/div/form/div[1]/div[2]/div/label")
@@ -33,7 +41,10 @@ public class LinkExternalAccountPage extends BasePage{
     WebElement submitBtn;
     @FindBy(xpath = "//div[@class=\"card-footer\"]/button[@type=\"reset\"]")
     WebElement resetBtn;
-
+    @FindBy(xpath = "//div[@id=\"emptyAccounts\"]/div/div")
+    WebElement alertNoLinkedAccounts;
+    @FindBy(xpath = "//div[@id=\"emptyAccounts\"]/div/div/div[3]/a/button")
+    WebElement alertContinueButton;
 
 
 //    public void openProviders(){
@@ -53,39 +64,68 @@ public class LinkExternalAccountPage extends BasePage{
         Assert.assertTrue(submitBtn.isDisplayed());
         Assert.assertTrue(resetBtn.isDisplayed());
     }
+
     public void selectOpenProvider() {
         Select providersDropDownOptions = new Select(providersDropDown);
         providersDropDownOptions.selectByVisibleText(ConfigReader.getProperty("invalid.provider"));
     }
+
     public void noOpenBankingProvider() {
         Select providersDropDownOptions = new Select(providersDropDown);
         providersDropDownOptions.selectByVisibleText(ConfigReader.getProperty("invalid.noprovideroptions"));
     }
+
     public void noOpenBankingOptions() {
         Assert.assertTrue(noBankingProviders.getText().equals(ConfigReader.getProperty("invalid.noprovideroptions")), "Open Banking Providers exist.");
     }
+
     public void reEnterUserNameAndPassword(String str1, String str2) {
         userNameInputField.sendKeys(ConfigReader.getProperty(str1));
         passWordInputField.sendKeys(ConfigReader.getProperty(str2));
     }
+
     public void clickSubmit() {
         submitBtn.click();
     }
+
     public void clickReset() {
         resetBtn.click();
     }
-    public void verifyNewPage(){
+
+    public void verifyNewPage() {
         Assert.assertTrue(!driver.getWindowHandle().equals(primaryWindow), "Link External Account information has not been submitted.");
     }
-    public void verifyNoNewPage(){
+
+    public void verifyNoNewPage() {
         Assert.assertTrue(driver.getWindowHandle().equals(primaryWindow), "You are on a new page.");
     }
+
     public void verifyErrorMessage() {
         Assert.assertTrue(errorMessage.isDisplayed());
     }
-    public void verifyResetInformationFields(){
+
+    public void verifyResetInformationFields() {
         Assert.assertTrue(userNameInputField.getText().isEmpty());
         Assert.assertTrue(passWordInputField.getText().isEmpty());
     }
 
+    public void verifyViewExternalAccountsPage() {
+        Assert.assertTrue(viewExternalAccountsTitle.isDisplayed());
+    }
+
+    public void verifyAlertNoExternalAccounts() {
+//        Alert alert = driver.switchTo().alert();
+//        String alertText = alert.getText();
+//        Assert.assertTrue(alertText.equals(ConfigReader.getProperty("invalid.nolinkedaccountsalert")), "No Linked Account pop-up did not appear.");
+//        alert.accept();
+        drWait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
+    }
+    public void alertContinueButton(){
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+//        alertContinueButton.click();
+    }
 }

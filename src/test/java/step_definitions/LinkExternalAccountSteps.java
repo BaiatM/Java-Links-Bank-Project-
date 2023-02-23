@@ -64,4 +64,25 @@ public class LinkExternalAccountSteps {
     public void user_verifies_empty_username_and_password_fields() {
         linkExternalAccountPage.verifyResetInformationFields();
     }
+    //View External Accounts steps**************
+    @Given("has selected View External Accounts")
+    public void has_selected_view_external_accounts() {
+        homePage.clickViewExternal();
+    }
+    @Given("has confirmed View External Accounts page")
+    public void has_confirmed_view_external_accounts_page() {
+        linkExternalAccountPage.verifyViewExternalAccountsPage();
+    }
+    @When("user sees pop-up alert there are no External Accounts")
+    public void user_sees_pop_up_alert_there_are_no_external_accounts() {
+        linkExternalAccountPage.verifyAlertNoExternalAccounts();
+    }
+    @When("clicks OK on pop-up")
+    public void clicks_ok_on_pop_up() {
+//        linkExternalAccountPage.alertContinueButton();
+    }
+    @Then("user should be taken to Link External Account page")
+    public void user_should_be_taken_to_link_external_account_page() {
+        linkExternalAccountPage.verifyLinkExternalAccountPage();
+    }
 }
