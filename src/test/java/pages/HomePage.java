@@ -48,6 +48,10 @@ public class HomePage extends BasePage {
     // EXTERNAL ELEMENTS******************************
     @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[4]/a/i")
     WebElement external;
+    @FindBy(css = "#link-external-menu-item")
+    WebElement linkExternal;
+    @FindBy(css = "#view-external-menu-item")
+    WebElement viewExternal;
     @FindBy(xpath = "//div[@id=\"main-menu\"]/ul/li[5]/a/i")
     WebElement deposit;
     @FindBy (id="withdraw-menu-item")
@@ -119,6 +123,7 @@ public class HomePage extends BasePage {
         Assert.assertTrue(welcomeText.isDisplayed(), "Welcome test message is not visible, could be on wrong page");
     }
 
+    //CHECKING ACCOUNTS METHODS
     public void clickOnCheckingDropDown() {
         checkingDropDown.click();
     }
@@ -161,6 +166,17 @@ public class HomePage extends BasePage {
 
     public void createNewSavingsAccount() {
         newSavings.click();
+    }
+
+    //EXTERNAL ACCOUNTS METHODS
+    public void clickExternalDropDown() {
+        external.click();
+    }
+    public void clickLinkExternal(){
+        linkExternal.click();
+    }
+    public void clickViewExternal(){
+        viewExternal.click();
     }
 
     //NAVBAR METHODS###################
