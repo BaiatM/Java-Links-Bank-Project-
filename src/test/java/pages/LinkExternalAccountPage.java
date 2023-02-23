@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +16,7 @@ import java.time.Duration;
 
 public class LinkExternalAccountPage extends BasePage {
     WebDriver driver = DriverUtils.getDriver();
-    WebDriverWait drWait = new WebDriverWait(driver, 10);
+    WebDriverWait drWait = new WebDriverWait(driver, 5, 250);
 
     @FindBy(css = "h1#page-title")
     WebElement externalAccountTitle;
@@ -54,6 +55,7 @@ public class LinkExternalAccountPage extends BasePage {
     String primaryWindow = driver.getWindowHandle();
 
     public void verifyLinkExternalAccountPage() {
+
         Assert.assertTrue(externalAccountTitle.isDisplayed());
         Assert.assertTrue(openBankingProviders.isDisplayed());
         Assert.assertTrue(providersDropDown.isDisplayed());
@@ -114,18 +116,9 @@ public class LinkExternalAccountPage extends BasePage {
     }
 
     public void verifyAlertNoExternalAccounts() {
-//        Alert alert = driver.switchTo().alert();
-//        String alertText = alert.getText();
-//        Assert.assertTrue(alertText.equals(ConfigReader.getProperty("invalid.nolinkedaccountsalert")), "No Linked Account pop-up did not appear.");
-//        alert.accept();
-        drWait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-
+        Assert.assertTrue(alertNoLinkedAccounts.isDisplayed(), "The pop up is not displayed");
     }
     public void alertContinueButton(){
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-//        alertContinueButton.click();
+        alertContinueButton.click();
     }
 }
