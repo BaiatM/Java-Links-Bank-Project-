@@ -108,6 +108,8 @@ public class HomePage extends BasePage {
     String onScreenMessage = "";
     @FindBy(xpath = "//div[@class=\"dropdown-menu show\"]/p")
     WebElement onScreenEmailMessage;
+    @FindBy (xpath="//a[text()='Transfer Between Accounts']")
+    WebElement transferBetweenAccountsOption;
 
     Actions actions = new Actions(DriverUtils.getDriver());
 
@@ -252,6 +254,10 @@ public class HomePage extends BasePage {
 
     public void userClicksOnWithdrawOption(){
         withdrawOption.click();
+    }
+
+    public void userClicksOnTransferBetweenAccountsOption(){
+        transferBetweenAccountsOption.click();
     }
 
 
