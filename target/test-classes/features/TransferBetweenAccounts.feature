@@ -17,9 +17,9 @@ Feature: User is able to transfer between accounts
     Then user verifies "<transferAmount>" in transaction table
     Examples:
       | fromAccount | toAccount | transferAmount |
-      | 1140        | 1149      | 7.50          |
-#      | 1882        | 1140      | 27.85          |
-#      | 1287        | 3485      | 100.00         |
-#      | 1924        | 2275      | 70.25          |
+      | 1140        | 1149      | 38.50          |
+      | 1882        | 1140      | 27.85          |
+      | 1287        | 3485      | 100.00         |
+      | 1924        | 2275      | 70.25          |
 #      just to check if the step on line 13 works
 #      | 1140        | 3485      | 20000.00       |
