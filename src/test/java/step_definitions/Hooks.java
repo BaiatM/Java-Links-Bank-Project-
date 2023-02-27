@@ -2,6 +2,8 @@ package step_definitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import utils.CommonMethods;
 import utils.ConfigReader;
 import utils.DriverUtils;
 
@@ -12,11 +14,12 @@ public class Hooks {
         DriverUtils.createDriver();
     }
     @After
-    public void cleanUp() throws InterruptedException {
+    public void cleanUp(Scenario scenario) throws InterruptedException {
+        if(scenario.isFailed()){
+            scenario.attach(CommonMethods.takeScreenshot(),"image/png",scenario.getName());
+        }
+        CommonMethods.takeScreenshot(scenario);
         Thread.sleep(3000);
         DriverUtils.getDriver().quit();
     }
 }
-//Use the framework we created to write and implement a sign-up feature DO NOT USE REAL DATA
-//Note: Since we can only sign up with a particular set of data once your test may only pass
-// the first time it runs. Do not worry this is expected.
