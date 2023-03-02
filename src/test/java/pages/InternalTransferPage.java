@@ -36,7 +36,7 @@ public class InternalTransferPage extends BasePage{
     }
 
     public void verifyTransferAmountIsLessThanAvailableBalance(){
-        double balance = Double.parseDouble(availableBalance.getText().substring(10));
+        double balance = Double.parseDouble(availableBalance.getText().substring(10)); //461.50
         Assert.assertTrue("Insufficient funds for the transfer",balance>transferingAmount);
     }
 
