@@ -5,12 +5,14 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utils.CommonMethods;
 import utils.ConfigReader;
+import utils.DatabaseUtils;
 import utils.DriverUtils;
 
 public class Hooks {
     @Before
     public void setUp(){
         ConfigReader.initializeProperties();
+        DatabaseUtils.initializeDBProperties();
         DriverUtils.createDriver();
     }
     @After
@@ -20,6 +22,7 @@ public class Hooks {
         }
         CommonMethods.takeScreenshot(scenario);
         Thread.sleep(3000);
+        DatabaseUtils.closeDataBaseConnection();
         DriverUtils.getDriver().quit();
     }
 }
