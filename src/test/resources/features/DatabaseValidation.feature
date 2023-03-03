@@ -5,7 +5,7 @@ Feature: Creating a new checking account
     When user clicks on Sign In button
     Then verify user is successfully logged in to the account
 
-  @Smoke
+  @DB
   Scenario: User is able to create a new checking account with valid credentials
     Given user is clicking on Checking dropdown and seeing following options: View Checking, New Checking
     And user is opening new tab by clicking on New Checking option
