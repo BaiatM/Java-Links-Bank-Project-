@@ -12,7 +12,6 @@ public class Hooks {
     @Before
     public void setUp(){
         ConfigReader.initializeProperties();
-        DatabaseUtils.initializeDBProperties();
         DriverUtils.createDriver();
     }
     @After
@@ -22,7 +21,6 @@ public class Hooks {
         }
         CommonMethods.takeScreenshot(scenario);
         Thread.sleep(3000);
-        DatabaseUtils.closeDataBaseConnection();
         DriverUtils.getDriver().quit();
     }
     @Before("@DB")
