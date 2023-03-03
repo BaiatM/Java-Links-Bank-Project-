@@ -41,6 +41,15 @@ public class DatabaseUtils {
         return resultSet;
     }
 
+    public static void deleteQuery(String query){
+        try {
+            statement.execute(query);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void closeDataBaseConnection(){
         try{
             statement.close();

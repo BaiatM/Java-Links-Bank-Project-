@@ -4,9 +4,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 import pages.CreateNewCheckingAccountPage;
 import pages.HomePage;
 import pages.ViewCheckingAccountsPage;
+import utils.DatabaseUtils;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
 
 public class CheckingAccountSteps {
     HomePage homePage = new HomePage();
@@ -34,7 +41,7 @@ public class CheckingAccountSteps {
 
     @When("user fills the information for new checking account")
     public void user_fills_the_information_for_new_checking_account() {
-        newTab.userProvidesValidInformation();
+        newTab.userProvidesValidInformation("Practice05");
     }
 
     @When("user clicks on submit button")
@@ -75,4 +82,35 @@ public class CheckingAccountSteps {
     public void userShouldSeeAllDetailsAboutTransactions() {
         viewCheckingAccountsPage.userCanSeeTransactionDetails();
     }
+
+    @When("user fills the information for new checking account with the name {string}")
+    public void userFillsTheInformationForNewCheckingAccountWithTheName(String checkingAccountName) {
+        newTab.userProvidesValidInformation(checkingAccountName);
+    }
+
+    @Then("verify user created new account in the database with the {string}")
+    public void verifyUserCreatedNewAccountInTheDatabaseWithThe(String newCheckingAccountName) throws SQLException {
+
+        ResultSet rs = DatabaseUtils.executeQuery("SELECT name FROM digitalbank.account where name = '" + newCheckingAccountName + "';");
+        rs.next();
+        Assert.assertEquals(newCheckingAccountName, rs.getString("name"),"names are not matching");
+
+    }
+
+    @Then("cleanup the database {string}")
+    public void cleanupTheDatabase(String newCheckingAccountName) throws SQLException {
+        DatabaseUtils.deleteQuery("DELETE FROM account WHERE name = '" + newCheckingAccountName + "';");
+//        ResultSet rs = DatabaseUtils.executeQuery("SELECT name FROM digitalbank.account where name = '" + newCheckingAccountName + "';");
+//        rs.next();
+//        Assert.assertEquals(null, rs.getString("name"),"names did not deleted");
+    }
 }
+
+
+
+
+
+
+
+
+
