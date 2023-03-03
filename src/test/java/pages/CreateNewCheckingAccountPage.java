@@ -67,10 +67,10 @@ public class CreateNewCheckingAccountPage extends BasePage{
         Assert.assertTrue(initialDepositBar.isDisplayed());
     }
 
-    public void userProvidesValidInformation(){
+    public void userProvidesValidInformation(String newCheckingAccountName){
         standardCheckingRadio.click();
         individualRadio.click();
-        accountNameBar.sendKeys("Practice05");
+        accountNameBar.sendKeys(newCheckingAccountName);
         initialDepositBar.sendKeys("200");
     }
 
