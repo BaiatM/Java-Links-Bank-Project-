@@ -25,4 +25,12 @@ public class Hooks {
         DatabaseUtils.closeDataBaseConnection();
         DriverUtils.getDriver().quit();
     }
+    @Before("@DB")
+    public void setUpDB(){
+        DatabaseUtils.initializeDBProperties();
+    }
+    @After("@DB")
+    public void cleanUpDB(){
+        DatabaseUtils.closeDataBaseConnection();
+    }
 }

@@ -88,22 +88,7 @@ public class CheckingAccountSteps {
         newTab.userProvidesValidInformation(checkingAccountName);
     }
 
-    @Then("verify user created new account in the database with the {string}")
-    public void verifyUserCreatedNewAccountInTheDatabaseWithThe(String newCheckingAccountName) throws SQLException {
 
-        ResultSet rs = DatabaseUtils.executeQuery("SELECT name FROM digitalbank.account where name = '" + newCheckingAccountName + "';");
-        rs.next();
-        Assert.assertEquals(newCheckingAccountName, rs.getString("name"),"names are not matching");
-
-    }
-
-    @Then("cleanup the database {string}")
-    public void cleanupTheDatabase(String newCheckingAccountName) throws SQLException {
-        DatabaseUtils.deleteQuery("DELETE FROM account WHERE name = '" + newCheckingAccountName + "';");
-//        ResultSet rs = DatabaseUtils.executeQuery("SELECT name FROM digitalbank.account where name = '" + newCheckingAccountName + "';");
-//        rs.next();
-//        Assert.assertEquals(null, rs.getString("name"),"names did not deleted");
-    }
 }
 
 
