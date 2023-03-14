@@ -17,7 +17,7 @@ public class DriverUtils {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.get("http://18.118.14.155:8080/bank/login");
+        driver.get(ConfigReader.getProperty("app.baseurl"));
     }
 
     public static WebDriver getDriver() {
